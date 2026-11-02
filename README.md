@@ -5,11 +5,11 @@
 
 | Nome completo | RGM | GitHub | Área de carreira |
 |---|---|---|---|
-| Albert dos Santos Mariano| | Engenharia de Dados
-| Gabriel Anjos Albuquerque | 48037931 | Engenharia de Dados
-| João Pedro Theodoro de Sousa Andrade| 47863251 | Ciência de Dados 
-| Petterson Michel Lima Aguilar | 47859792 | Engenharia de Dados
-| Samuel Carmoni de Oliveira | 47813733 | Cybersegurança
+| Albert dos Santos Mariano| | AlbertdosSantosMariano | Engenharia de Dados
+| Gabriel Anjos Albuquerque | 48037931 | Nerd8im | Engenharia de Dados
+| João Pedro Theodoro de Sousa Andrade| 47863251 | jp-theodoro | Ciência de Dados 
+| Petterson Michel Lima Aguilar | 47859792 | PettersonAguilar | Engenharia de Dados
+| Samuel Carmoni de Oliveira | 47813733 |carmonisamuel-cloud | Cybersegurança
 |---|---|---|---|
 
 ### Apresentação do projeto
