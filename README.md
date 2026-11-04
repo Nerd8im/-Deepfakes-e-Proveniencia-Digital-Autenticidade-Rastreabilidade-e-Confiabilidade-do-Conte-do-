@@ -5,7 +5,7 @@
 
 | Nome completo | RGM | GitHub | Área de carreira |
 |---|---|---|---|
-| Albert dos Santos Mariano| | AlbertdosSantosMariano | Engenharia de Dados
+| Albert dos Santos Mariano| 47857927 | AlbertdosSantosMariano | Engenharia de Dados
 | Gabriel Anjos Albuquerque | 48037931 | Nerd8im | Engenharia de Dados
 | João Pedro Theodoro de Sousa Andrade| 47863251 | jp-theodoro | Ciência de Dados 
 | Petterson Michel Lima Aguilar | 47859792 | PettersonAguilar | Engenharia de Dados
@@ -250,7 +250,7 @@ Descrever quais limitações são aceitáveis, quais impediriam a implantação 
 
 ## 3. Análise ética
 
-**Responsável:** [Nome do integrante]
+**Responsável:** [ Albert dos Santos Mariano ]
 
 ### 3.1 Matriz de riscos éticos
 
@@ -265,12 +265,44 @@ Descrever quais limitações são aceitáveis, quais impediriam a implantação 
 | C2PA interpretado como prova da verdade | Transparência | Alto | Explicação clara do significado da credencial |
 | Uso político enviesado da plataforma | Governança | Alto | Critérios públicos, auditoria e revisão independente |
 
-**[DESENVOLVER — RESPONSÁVEL]**
+**[DETALHANDO]**
 
-- Detalhar a probabilidade e a gravidade de cada risco.
-- Indicar quem pode ser prejudicado.
-- Explicar como cada controle seria verificado.
-- Incluir riscos adicionais, se necessário.
+Detalhando probabilidade e gravidade de cada risco, quem pode ser prejudicado, explicar como cada controle seria verificado. 
+
+- **Conteúdo verdadeiro classificado como manipulado:**
+  Probabilidade média e gravidade alta de danos reputacionais e censura indevida, Criadores de conteúdo, jorbalistas e utilizadores legítimos serão os mais prejudicados. (Revisão humana e contestação): Verificado por meio de auditorias semanais de solicitações de contestação aprovadas e medição da taxa de falsos positivos
+
+
+- **Deepfake não identificado:**
+  Probabilidade média e alta e gravidade critica de disseminação em larga escala. O público em geral, figuras públicas e alvos diretos de desinformação serão prejudicados. Combinar evidências e comunicar incerteza): Verificado mediante testes de estresse na API de deteção e checagem da interface para assegurar que a incerteza é exibida claramente. 
+
+
+
+- **Desempenho desigual por sotaque:**
+  Probabilidade alta e gravidade alta de discriminação e exclusão regional. Grupos minoritários e utilizadores de regiões com sotaques menos representados serão mais afetados. (Testes por grupos e condições de gravação): Verificado através da avaliação de métricas de precisão segmentadas por dados demográficos e variações de áudio.  
+
+
+- **Vazamento de vídeos privados:**
+  Probabilidade baixa e média e gravidade muito alta da violação de privacidade e impactos legais. Utilizadores da plataforma e consumidores de notícias, são os públicos mais prejudicados. (Criptografia, acesso restrito e retenção limitada): Verificado por testes de penetração (pentests), auditorias de permissão (IAM) e rotinas automáticas de exclusão de dados. 
+
+
+
+- **Coleta excessiva de dados:**
+  Probabilidade média e gravidade média e alta de desconformidade com a LGPD. Todos que interagem com o sistemas serão prejudicados. (Minimização e descarte): Verificado mediante revisão do pipeline de engenharia para confirmar que apenas os metadados estritamente necessários são armazenados. (Testes de robustez e monitoramento): Verificado por simulações periódicas de ataques e monitorização contínua de anomalias no tráfego.  
+
+
+- **Manipulação adversarial do detector:**
+  Probabilidade alta de ataques intencionais e gravidade alta de perca de eficácia do sistema. A plataforma e a integridade da informação pública serão afetadas
+
+
+- **C2PA interpretado como prova da verdade:**
+  Probabilidade alta confusão entre proveniência e veracidade factual, e gravidade média e alta. Utilizadores das plataformas e consumidores de notícias não terão segurança 100%.  (Explicação clara do significado da credencial): Verificado por testes de usabilidade e inquéritos de compreensão com utilizadores sobre os selos de procedência.
+
+
+- **Uso político enviesado da plataforma:**
+- Probabilidade média e gravidade crítica, com riscos de interferência política ou eleitoral. A sociedade, partidos políticos e a neutralidade institucional serão afetadas. (Critérios públicos, auditoria e revisão independente): Verificado através da publicação de relatórios transparentes e auditorias externas realizadas por terceiros.
+
+
 
 ### 3.2 Decisão ética de implantação
 
