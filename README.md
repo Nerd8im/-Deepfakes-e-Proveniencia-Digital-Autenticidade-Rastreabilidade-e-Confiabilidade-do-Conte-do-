@@ -376,48 +376,150 @@ Referência: [ANPD — Nota Técnica nº 1/2026](https://www.gov.br/anpd/pt-br/c
 
 ## 4. Acessibilidade e inclusão digital
 
-**Responsável:** [Nome do integrante]
+**Responsável:** Samuel Carmoni de Oliveira
+
+O VerificaBR atende conteúdos político-eleitorais que chegam, em geral, por WhatsApp e redes sociais. Quem recebe esse conteúdo é muito diverso: eleitores de todas as idades, muitos com celular simples, internet limitada e pouca familiaridade digital. A acessibilidade, portanto, não é um detalhe do projeto: se o resultado não for compreendido por essas pessoas, a ferramenta não cumpre a função de reduzir os danos da desinformação.
 
 ### 4.1 Quem poderia ser excluído?
 
-A solução precisa considerar usuários com diferentes condições de acesso à tecnologia.
+#### 4.1.1 Grupos e barreiras
 
-| Público | Barreira possível | Mitigação proposta |
-|---|---|---|
-| Pessoas cegas | Interface exclusivamente visual | Compatibilidade com leitores de tela |
-| Pessoas com baixa visão | Texto pequeno ou contraste insuficiente | Ajustes visuais e contraste adequado |
-| Pessoas surdas | Resultados apresentados apenas em áudio | Transcrições e legendas |
-| Pessoas idosas | Navegação complexa | Linguagem simples e fluxo reduzido |
-| Pessoas com internet limitada | Arquivos pesados e páginas lentas | Interface leve e informações de consumo |
-| Pessoas com baixa alfabetização digital | Termos técnicos incompreensíveis | Explicações e exemplos acessíveis |
-| Pessoas com limitações motoras | Dependência do mouse | Navegação completa por teclado |
+- **Pessoas cegas.** Barreira: interface só visual e gráficos de "nível de confiança" sem descrição. O que a solução faz: compatibilidade com leitores de tela, resultado sempre em texto e descrição textual dos gráficos.
+- **Pessoas com baixa visão.** Barreira: texto pequeno, contraste insuficiente e tela quebrada ao ampliar. O que a solução faz: contraste mínimo, texto ampliável até 200% sem perda de função e nenhuma dependência de cor.
+- **Pessoas surdas.** Barreira: vídeos de ajuda e orientações apenas em áudio. O que a solução faz: legenda e transcrição em todo conteúdo de ajuda, com janela de Libras (por exemplo, o VLibras) como meta.
+- **Pessoas idosas.** Barreira: muitos passos, medo de errar e linguagem técnica. O que a solução faz: fluxo de 3 passos (enviar, aguardar, ver resultado), botões grandes e exemplo na tela inicial.
+- **Pessoas com internet limitada.** Barreira: envio de vídeo pesado, páginas lentas e franquia de dados curta. O que a solução faz: interface leve, aviso de consumo antes do envio, limites de tamanho e envio com retomada (ver 4.1.3).
+- **Pessoas com baixa alfabetização digital.** Barreira: termos como "proveniência", "C2PA" ou "modelo de IA". O que a solução faz: frases curtas e exemplos, deixando os termos técnicos em um "saiba mais" opcional.
+- **Pessoas com limitações motoras.** Barreira: arrastar arquivo com mouse e botões pequenos. O que a solução faz: envio por botão, navegação completa por teclado e alvos grandes.
+- **Pessoas com celular simples ou sem smartphone próprio.** Barreira: não instalam aplicativo e têm pouco espaço de armazenamento. O que a solução faz: solução web, sem instalação, que funciona em navegador comum e em telas pequenas.
+- **Pessoas com deficiência cognitiva ou dificuldade de leitura.** Barreira: excesso de informação e linguagem abstrata. O que a solução faz: resumo de uma frase no topo, detalhes abaixo e nenhum tempo-limite curto para concluir ações.
 
-**[DESENVOLVER — RESPONSÁVEL]**
+#### 4.1.2 Barreiras específicas do recorte (político-eleitoral, WhatsApp e redes sociais)
 
-- Identificar barreiras específicas do público escolhido.
-- Explicar alternativas para conexões lentas.
-- Definir como o usuário recebe o resultado.
-- Propor testes com participantes representativos.
+- **O conteúdo costuma estar no WhatsApp e não tem link.** O usuário precisa salvar o áudio ou vídeo no celular e enviar o arquivo. Isso é uma barreira para quem não sabe localizar arquivos. A interface terá instruções curtas, com imagens e texto, de como encaminhar o arquivo a partir do WhatsApp.
+- **Formatos comuns de mensagens.** Áudios de aplicativos de mensagem usam formatos próprios. A plataforma deve aceitar os formatos mais comuns de áudio e vídeo desses aplicativos e dizer claramente, em texto, quando o formato não é aceito.
+- **Pressa e emoção.** Conteúdo eleitoral circula rápido e gera reação forte. O resultado deve evitar linguagem alarmista e deixar claro o que a ferramenta sabe e o que não sabe.
+- **Confiança política.** O usuário pode rejeitar um resultado que contraria o que ele acredita. A explicação deve mostrar as evidências em linguagem simples e oferecer revisão humana, sem tom de acusação.
+- **Privacidade.** Muitos usuários vão enviar conteúdo que receberam de conhecidos. A plataforma deve avisar, antes do envio, que o arquivo pode conter dados de terceiros e o que será feito com ele (ligação com a seção 3.4).
+
+#### 4.1.3 Alternativas para conexões lentas
+
+1. Mostrar, antes do envio, o tamanho do arquivo e uma estimativa de consumo de dados.
+2. Aplicar limites de tamanho e duração (valores iniciais a validar com Ciência de Dados e Cloud, por exemplo 50 MB e 3 minutos), com aviso claro quando o arquivo passar do limite. Isso também reduz o custo ambiental (seção 5).
+3. Permitir enviar só o trecho suspeito, em vez do vídeo inteiro.
+4. Envio com retomada: se a conexão cair, o usuário continua de onde parou.
+5. Não manter a pessoa esperando na tela: o resultado fica disponível por um **código de acompanhamento**, e o usuário pode fechar a página e voltar depois.
+6. **Modo leve:** página só com texto, sem imagens decorativas e sem vídeo automático.
+7. Quando o conteúdo já estiver publicado, aceitar o link em vez do arquivo, para evitar o envio.
+
+#### 4.1.4 Como o usuário recebe o resultado
+
+- O resultado aparece na tela, em **texto**, com um resumo de uma frase no topo e os detalhes abaixo.
+- O estado do resultado é sempre escrito, nunca só por cor, som ou ícone.
+- O usuário pode voltar ao resultado usando o código de acompanhamento, **sem precisar criar conta**. Isso também ajuda a minimização de dados (seção 3.3).
+- Notificações por telefone ou e-mail só existiriam se o usuário pedisse, porque exigem coletar mais dados pessoais.
+- Todo resultado informa o que a ferramenta **não** sabe e como pedir **revisão humana** (canal de contestação da seção 3).
+
+Frases-modelo para cada estado do resultado, em linguagem simples:
+
+- **Proveniência verificada:** "Este arquivo tem registro de origem válido. Isso mostra quem o criou e se foi alterado depois. Não prova que o que é dito nele seja verdade."
+- **Indícios técnicos de manipulação:** "Encontramos sinais de que este conteúdo pode ter sido alterado ou criado por computador. Isso não é prova. Você pode pedir a análise de uma pessoa."
+- **Relacionado a uma checagem existente:** "Um conteúdo parecido já foi analisado por uma organização de checagem. Veja a análise completa no link."
+- **Análise inconclusiva:** "Não conseguimos saber. Isso não quer dizer que seja verdadeiro nem falso."
+- **Aguardando revisão humana:** "Uma pessoa está analisando este conteúdo. Guarde o seu código para ver o resultado depois."
+
+#### 4.1.5 Testes com participantes representativos
+
+- **Quem:** de 5 a 8 pessoas por perfil prioritário: pessoa idosa, pessoa cega ou com baixa visão (usando leitor de tela), pessoa com celular simples ou internet limitada, pessoa com baixa familiaridade digital. Se o grupo só conseguir testar com colegas e familiares, isso deve ser dito de forma clara no texto, e o teste com os perfis acima fica como etapa obrigatória antes do piloto.
+- **Tarefas reais:** "envie este áudio e me diga o que o resultado significa", "volte ao resultado de ontem usando o código", "peça revisão humana".
+- **O que medir:** se concluiu sem ajuda, tempo gasto, número de erros e se conseguiu explicar o resultado com as próprias palavras (compreensão, não só uso).
+- **Conteúdo do teste:** arquivos fictícios criados pelo grupo, claramente identificados como simulação, e sem candidatos ou partidos reais. Assim se evita influência política e o uso de dados pessoais de terceiros.
+- **Privacidade:** participação voluntária, com consentimento e coleta mínima de dados.
+- **Depois do teste:** os problemas viram correções antes de qualquer ampliação, e o teste é repetido. Os resultados alimentam o indicador "Acessibilidade" da seção 6.1.
 
 ### 4.2 Critérios concretos de acessibilidade
 
-Referência: WCAG 2.2, do W3C.
+Referência: WCAG 2.2, do W3C. Nível de conformidade alvo: **AA**.
 
-| Critério WCAG | Aplicação no projeto |
-|---|---|
-| 1.1.1 — Conteúdo não textual | Alternativas textuais para elementos informativos |
-| 1.2.2 — Legendas pré-gravadas | Legendas quando houver vídeo com áudio |
-| 1.4.3 — Contraste mínimo | Contraste adequado para textos |
-| 2.1.1 — Teclado | Operação sem necessidade de mouse |
-| 2.4.7 — Foco visível | Indicação visual do elemento selecionado |
-| 2.5.8 — Tamanho do alvo | Controles com área de interação adequada |
-| 3.3.1 — Identificação de erros | Mensagens claras sobre erros de formulário |
-| 3.3.8 — Autenticação acessível | Evitar barreiras cognitivas desnecessárias |
+#### 4.2.1 Critérios, como testar e como corrigir
 
-**[DESENVOLVER — RESPONSÁVEL]**
+**1.1.1 Conteúdo não textual**
+- Aplicação: gráficos e ícones de resultado têm texto alternativo útil. Imagens decorativas ficam sem descrição.
+- Como testar: axe DevTools, WAVE e leitor de tela.
+- Se falhar: escrever o texto alternativo ou a descrição. Marcar as decorativas com `alt=""`.
 
-Explicar como testar os critérios, quais ferramentas seriam utilizadas e como corrigir falhas encontradas.
+**1.2.2 Legendas pré-gravadas**
+- Aplicação: vídeos de ajuda com legenda.
+- Como testar: assistir sem som e revisar.
+- Se falhar: corrigir ou adicionar a legenda antes de publicar.
 
+**1.4.1 Uso de cor**
+- Aplicação: os estados do resultado nunca dependem só de cor.
+- Como testar: revisão manual e simulação de daltonismo.
+- Se falhar: adicionar texto e ícone com rótulo.
+
+**1.4.3 Contraste mínimo**
+- Aplicação: texto com contraste de pelo menos 4,5:1.
+- Como testar: Colour Contrast Analyser e Lighthouse.
+- Se falhar: ajustar as cores no design.
+
+**1.4.4 Redimensionar texto**
+- Aplicação: ampliar até 200% sem perder conteúdo ou função.
+- Como testar: zoom do navegador e do sistema.
+- Se falhar: usar unidades relativas e layout flexível.
+
+**2.1.1 Teclado**
+- Aplicação: todo o fluxo, inclusive o envio, funciona com Tab, Enter, Espaço e Esc.
+- Como testar: teste manual completo só com teclado.
+- Se falhar: trocar elementos sem foco por botões e links nativos.
+
+**2.2.1 Tempo ajustável**
+- Aplicação: sem sessão que expire durante o envio. O código de acompanhamento permite retomar.
+- Como testar: teste manual com envio lento.
+- Se falhar: aumentar ou remover o limite de tempo.
+
+**2.4.7 Foco visível**
+- Aplicação: o elemento ativo é sempre visível.
+- Como testar: navegação por teclado e revisão visual.
+- Se falhar: criar um contorno de foco claro.
+
+**2.5.8 Tamanho do alvo**
+- Aplicação: botões e links com pelo menos 24×24 px CSS, ou espaçamento equivalente.
+- Como testar: inspetor do navegador.
+- Se falhar: aumentar a área clicável ou o espaçamento.
+
+**3.3.1 Identificação de erros**
+- Aplicação: erros como "arquivo grande demais" ou "formato não aceito" aparecem em texto, dizendo como corrigir.
+- Como testar: provocar cada erro e ler com leitor de tela.
+- Se falhar: reescrever a mensagem em texto, ligada ao campo.
+
+**3.3.8 Autenticação acessível**
+- Aplicação: sem conta obrigatória. O código de acompanhamento pode ser copiado e colado. Sem CAPTCHA que exija resolver desafio.
+- Como testar: revisão do fluxo e teste com gerenciador de senhas.
+- Se falhar: permitir colar, evitar testes cognitivos e usar limite de requisições no servidor.
+
+**4.1.3 Mensagens de status**
+- Aplicação: "Enviando", "Analisando" e "Resultado pronto" são anunciados ao leitor de tela.
+- Como testar: teste com NVDA e TalkBack.
+- Se falhar: marcar as mensagens com regiões de status (`aria-live`).
+
+#### 4.2.2 Rotina de teste
+
+1. **Automático, a cada versão:** axe e Lighthouse. Encontram só parte dos problemas, então não bastam sozinhos.
+2. **Manual:** teclado completo, zoom de 200%, simulação de baixa conexão e leitor de tela (NVDA no computador, TalkBack no Android, VoiceOver no iPhone).
+3. **Com usuários reais:** conforme a seção 4.1.5.
+4. **Revisão de linguagem:** conferir se os textos do resultado estão em frases curtas, sem jargão, e se a ressalva de incerteza aparece em todos os estados.
+
+#### 4.2.3 Como corrigir as falhas
+
+- Cada falha vira uma tarefa no repositório com: critério violado, onde ocorre, gravidade e responsável.
+- Falhas que impedem concluir o fluxo (por exemplo, não dá para enviar o arquivo pelo teclado) **bloqueiam a liberação** de uma nova versão.
+- A tarefa só é fechada depois de testar novamente.
+- Também é necessário reavaliar a acessibilidade quando o relatório ou a interface mudarem.
+
+#### 4.2.4 Limitações assumidas
+
+O grupo não afirma que a plataforma será 100% acessível: a conformidade com WCAG 2.2 AA é uma meta, verificada por testes automáticos, manuais e com usuários. Se não for possível oferecer Libras no piloto, isso será dito de forma explícita, junto com a alternativa (legenda e transcrição).
 ---
 
 ## 5. Sustentabilidade
