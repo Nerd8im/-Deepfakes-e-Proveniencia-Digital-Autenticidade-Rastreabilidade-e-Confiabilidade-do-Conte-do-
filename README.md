@@ -528,54 +528,68 @@ O grupo não afirma que a plataforma será 100% acessível: a conformidade com W
 
 ### 5.1 Sustentabilidade ambiental
 
-O processamento de vídeos e áudios por modelos de inteligência artificial pode exigir recursos computacionais significativos.
+A sustentabilidade do VerificaBR deve ser considerada em três dimensões: ambiental, técnica e financeira. Como a plataforma utiliza inteligência artificial para verificar possíveis manipulações em áudios e vídeos, seu funcionamento exige recursos computacionais, armazenamento de dados e manutenção contínua. Dessa forma, é necessário desenvolver estratégias que reduzam o desperdício de recursos, garantam a continuidade tecnológica e possibilitem sua manutenção financeira sem comprometer a qualidade das análises.
 
-**Medidas propostas:**
+O processamento de conteúdos por inteligência artificial exige energia elétrica e infraestrutura computacional, especialmente quando envolve modelos complexos de análise audiovisual. Segundo o relatório *Energy and AI*, publicado pela Agência Internacional de Energia (IEA) em 2025, os centros de dados consumiram aproximadamente 415 TWh de eletricidade em 2024, representando cerca de 1,5% do consumo mundial. O estudo também projeta que esse consumo poderá chegar a aproximadamente 945 TWh até 2030, impulsionado, entre outros fatores, pelo crescimento da inteligência artificial.
 
-- Evitar executar modelos pesados quando não forem necessários.
-- Verificar proveniência e checagens existentes antes de iniciar análises custosas.
-- Aplicar limites de tamanho e duração dos arquivos.
-- Excluir dados temporários após o prazo definido.
-- Monitorar consumo de processamento e armazenamento.
-- Avaliar serviços de nuvem com indicadores ambientais disponíveis.
+Considerando esse cenário, o VerificaBR propõe uma arquitetura que prioriza a eficiência computacional. Antes de executar modelos de inteligência artificial mais exigentes, a plataforma realizará a verificação de proveniência digital por meio do padrão C2PA e consultará uma base de conteúdos anteriormente analisados. Essa estratégia poderá reduzir processamentos repetitivos, direcionando análises mais complexas apenas aos casos em que forem necessárias. Entretanto, a economia de recursos não deverá comprometer a confiabilidade dos resultados, uma vez que a presença de credenciais digitais ou de verificações anteriores não garante, isoladamente, a veracidade de um conteúdo.
 
-**[PREENCHER]** Definir métricas ambientais e explicar como seriam acompanhadas.
+Outras medidas incluem estabelecer limites de tamanho e duração dos arquivos, utilizar processamento sob demanda, evitar servidores de alto desempenho ociosos e realizar a exclusão automática de dados temporários após o período necessário. A escolha de provedores de nuvem também deverá considerar informações sobre eficiência energética e emissões de carbono.
+
+Para acompanhar os resultados, serão utilizados indicadores como consumo de CPU e GPU por análise, quantidade de dados armazenados, volume de transferência e estimativa de emissões de carbono. Como metas iniciais, propõe-se reduzir em 20% o consumo computacional médio por análise e em 15% o volume de dados transferidos durante o primeiro ano de monitoramento, tomando como referência os resultados obtidos nos testes iniciais. Essas metas são estimativas acadêmicas e poderão ser ajustadas conforme a viabilidade técnica.
+
+O acompanhamento será realizado mensalmente pelos responsáveis por Ciência de Dados e Engenharia de Dados, utilizando ferramentas de monitoramento da infraestrutura. Como referência metodológica, poderá ser utilizada a **Software Carbon Intensity (SCI)**, da Green Software Foundation, que permite avaliar a intensidade de carbono associada ao funcionamento de sistemas computacionais.
+
 
 ### 5.2 Sustentabilidade técnica e manutenção
 
-**Medidas propostas:**
 
-- Documentação de componentes e dependências.
-- Atualizações periódicas de segurança.
-- Monitoramento de desempenho dos modelos.
-- Reavaliação dos conjuntos de teste.
-- Revisão de incidentes e reclamações.
-- Procedimentos para substituição de tecnologias obsoletas.
+A sustentabilidade técnica está relacionada à capacidade de manter o VerificaBR funcional, seguro e atualizado ao longo do tempo. Como as tecnologias utilizadas para produzir deepfakes evoluem constantemente, os modelos de detecção precisam ser avaliados periodicamente para identificar possíveis perdas de desempenho diante de novos métodos de manipulação.
 
-**[PREENCHER]** Definir responsáveis, frequência e custos de manutenção.
+Para garantir a continuidade da plataforma, será necessário manter a documentação dos componentes, realizar atualizações de segurança, acompanhar o funcionamento dos modelos e revisar os conjuntos de dados utilizados nos testes. Também deverão existir procedimentos para corrigir falhas, responder a incidentes, analisar reclamações e substituir tecnologias que se tornem obsoletas.
+
+A manutenção será dividida entre as áreas profissionais presentes no projeto. A **Ciência de Dados** será responsável pelo acompanhamento da qualidade dos modelos, analisando indicadores como falsos positivos, falsos negativos e tempo de processamento. A **Engenharia de Dados** atuará na manutenção dos fluxos de informações, armazenamento e integração dos componentes, enquanto a **Cibersegurança** ficará responsável pela identificação de vulnerabilidades, proteção dos dados e avaliação dos controles de acesso.
+
+Propõe-se que o desempenho dos modelos e os custos operacionais sejam acompanhados mensalmente, enquanto revisões mais completas dos conjuntos de teste e da arquitetura sejam realizadas trimestral e semestralmente, respectivamente. Atualizações críticas de segurança deverão ser tratadas assim que identificadas, conforme sua gravidade.
+
+Essas práticas estão alinhadas às recomendações do *Artificial Intelligence Risk Management Framework*, desenvolvido pelo National Institute of Standards and Technology (NIST), que destaca a importância do gerenciamento contínuo dos riscos associados à inteligência artificial.
+
+Para o planejamento financeiro, estima-se inicialmente uma necessidade de 12 horas mensais de manutenção técnica. Considerando um valor hipotético de R$ 100,00 por hora, o custo mensal seria de aproximadamente R$ 1.200,00. Essa estimativa deverá ser revisada conforme a complexidade do sistema e a quantidade de usuários.
+
+A documentação do projeto e o versionamento no GitHub também contribuirão para sua sustentabilidade, permitindo que novos colaboradores compreendam a estrutura desenvolvida e realizem melhorias sem depender exclusivamente dos responsáveis iniciais.
 
 ### 5.3 Sustentabilidade financeira após o primeiro ano
 
-**Possibilidades a avaliar:**
+Para garantir sua continuidade após os primeiros 12 meses, o VerificaBR precisará de um planejamento financeiro que considere despesas com hospedagem, processamento de inteligência artificial, armazenamento, segurança, revisão humana e manutenção técnica. Embora a plataforma tenha finalidade acadêmica e social, sua eventual disponibilização pública dependerá de recursos suficientes para manter uma operação confiável.
 
-- Parcerias com instituições de pesquisa.
-- Apoio a projetos de educação midiática.
-- Financiamento institucional.
-- Convênios com organizações de checagem.
-- Serviços especializados, sem comprometer a independência da análise.
+Como ainda não existe uma implementação em funcionamento, foi elaborado um cenário hipotético de operação com **2.000 análises mensais**, das quais aproximadamente 10% poderiam necessitar de revisão humana. Considerando 200 revisões com duração média de 10 minutos e custo hipotético de R$ 48,00 por hora, a despesa mensal com essa atividade seria de aproximadamente R$ 1.600,00.
+
+A tabela apresenta uma estimativa inicial dos custos necessários para manter a plataforma nesse cenário:
 
 | Categoria de custo | Estimativa mensal | Justificativa |
-|---|---|---|
-| Hospedagem | [R$] | [PREENCHER] |
-| Processamento de IA | [R$] | [PREENCHER] |
-| Armazenamento | [R$] | [PREENCHER] |
-| Segurança | [R$] | [PREENCHER] |
-| Revisão humana | [R$] | [PREENCHER] |
-| Manutenção | [R$] | [PREENCHER] |
+|---|---:|---|
+| Hospedagem | R$ 400,00 | Manutenção da plataforma web, API e infraestrutura básica |
+| Processamento de IA | R$ 900,00 | Execução sob demanda dos modelos de análise audiovisual |
+| Armazenamento | R$ 200,00 | Armazenamento temporário e transferência de arquivos |
+| Segurança | R$ 350,00 | Monitoramento, proteção de dados e controle de acesso |
+| Revisão humana | R$ 1.600,00 | Análise especializada de casos complexos ou inconclusivos |
+| Manutenção técnica | R$ 1.200,00 | Atualizações, correções e acompanhamento do sistema |
+| **Subtotal** | **R$ 4.650,00** | **Despesas operacionais estimadas** |
+| Reserva de contingência (15%) | R$ 697,50 | Cobertura de possíveis despesas imprevistas |
+| **Total mensal** | **R$ 5.347,50** | **Custo operacional mensal projetado** |
 
-**[DESENVOLVER]** Explicar como o projeto continuaria após 12 meses e quais condições poderiam inviabilizá-lo.
+Com base nesses valores, o custo anual estimado seria de **R$ 64.170,00**. Considerando 24.000 análises por ano, o custo médio corresponderia a aproximadamente **R$ 2,67 por análise**, incluindo as despesas operacionais e a reserva de contingência.
 
----
+É importante destacar que esses valores representam uma **simulação acadêmica**, não uma cotação de mercado. Os custos reais dependerão da infraestrutura escolhida, da demanda dos usuários e da complexidade dos modelos utilizados. Ferramentas como o [AWS Pricing Calculator](https://aws.amazon.com/aws-cost-management/aws-pricing-calculator/) poderão auxiliar na elaboração de orçamentos mais precisos durante uma eventual implementação.
+
+Para reduzir despesas, o projeto deverá priorizar ferramentas de código aberto, processamento sob demanda, armazenamento temporário e reutilização de análises anteriores quando tecnicamente adequado. O acompanhamento financeiro será mensal, permitindo identificar aumentos inesperados e ajustar os recursos contratados.
+
+A continuidade financeira poderá ser viabilizada por meio de **parcerias com universidades, instituições de pesquisa, organizações de checagem de fatos e programas de financiamento à inovação tecnológica**. Também poderão ser considerados projetos de educação midiática e serviços institucionais especializados, desde que não comprometam a independência das análises ou a privacidade dos usuários.
+
+Caso os custos ultrapassem o orçamento previsto por dois meses consecutivos, será necessária uma revisão do planejamento. Se não houver financiamento suficiente para manter os controles essenciais de segurança e confiabilidade, o projeto poderá reduzir temporariamente seu alcance ou retornar ao formato de pesquisa acadêmica, evitando uma operação pública sem condições adequadas.
+
+Portanto, a sustentabilidade do VerificaBR não depende apenas da redução de custos, mas do equilíbrio entre **responsabilidade ambiental, atualização tecnológica e viabilidade financeira**. Ao adotar essas estratégias desde seu desenvolvimento, a plataforma poderá buscar uma operação eficiente e duradoura, contribuindo para o combate à desinformação sem desconsiderar os impactos associados à própria tecnologia.
+
 
 ## 6. Impacto esperado
 
@@ -767,6 +781,7 @@ Para cada decisão:
 **Commits e pull requests:**
 
 1º commit: Adicionar esqueleto do documento, organizando para os outros integrantes adicionarem suas partes e separar a função de cada integrante.
+2º commit: Adicionar a parte 5 de sustentabilidade, além de adicionar as referencias
 
 #### 8.3.2 Competências técnicas e comportamentais
 
@@ -911,7 +926,24 @@ As referências abaixo são sugestões iniciais de fontes para o Dossiê 4. O gr
 
 12. AOS FATOS. **Da IA ultrarrealista ao WhatsApp, como a desinformação moldou as eleições**. Outubro de 2026. Disponível em: https://www.aosfatos.org/noticias/ia-ultrarrealista-whatsapp-desinformacao-moldou-eleicoes/
 
-**[PREENCHER — GRUPO]**
+### Pesquisas da parte 5, sustentabilidade
+1. NTERNATIONAL ENERGY AGENCY (IEA). **Energy and AI**. Paris: IEA, 2025. Disponível em: https://www.iea.org/reports/energy-and-ai/executive-summary. Acesso em: 4 nov. 2026.
+
+2. GREEN SOFTWARE FOUNDATION. **Software Carbon Intensity (SCI): ISO/IEC 21031:2024**. Disponível em: https://greensoftware.foundation/standards/sci/. Acesso em: 4 nov. 2026.
+
+3. AMAZON WEB SERVICES (AWS). **Pilar Sustentabilidade: AWS Well-Architected Framework**. Revisão de novembro de 2024. Disponível em: https://docs.aws.amazon.com/pt_br/wellarchitected/latest/sustainability-pillar/sustainability-pillar.html. Acesso em: 4 nov. 2026.
+
+4. NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST). **Artificial Intelligence Risk Management Framework (AI RMF 1.0)**. NIST AI 100-1, 2023. Disponível em: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/. Acesso em: 4 nov. 2026.
+
+5. GOOGLE CLOUD. **Carbon Footprint Reporting Methodology**. Documentação técnica. Disponível em: https://docs.cloud.google.com/carbon-footprint/docs/methodology. Acesso em: 4 nov. 2026.
+
+6. AMAZON WEB SERVICES (AWS). **AWS Pricing Calculator**. Disponível em: https://aws.amazon.com/aws-cost-management/aws-pricing-calculator/. Acesso em: 4 nov. 2026.
+
+7. AMAZON WEB SERVICES (AWS). **Definição de preço de instância sob demanda do Amazon EC2**. Disponível em: https://aws.amazon.com/pt/ec2/pricing/on-demand/. Acesso em: 4 nov. 2026.
+
+8. AMAZON WEB SERVICES (AWS). **Managing the Lifecycle of Objects**. Amazon S3 User Guide. Disponível em: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html. Acesso em: 4 nov. 2026.
+
+9. AMAZON WEB SERVICES (AWS). **Creating a Cost Budget**. AWS Cost Management User Guide. Disponível em: https://docs.aws.amazon.com/cost-management/latest/userguide/create-cost-budget.html. Acesso em: 4 nov. 2026.
 
 - Acrescentar as referências utilizadas pelos integrantes.
 - Conferir autoria, título, ano, URL e data de acesso.
