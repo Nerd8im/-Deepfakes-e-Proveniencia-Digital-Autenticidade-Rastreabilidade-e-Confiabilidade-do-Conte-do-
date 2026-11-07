@@ -510,48 +510,150 @@ Referência: [ANPD — Nota Técnica nº 1/2026](https://www.gov.br/anpd/pt-br/c
 
 ## 4. Acessibilidade e inclusão digital
 
-**Responsável:** [Nome do integrante]
+**Responsável:** Samuel Carmoni de Oliveira
+
+O VerificaBR atende conteúdos político-eleitorais que chegam, em geral, por WhatsApp e redes sociais. Quem recebe esse conteúdo é muito diverso: eleitores de todas as idades, muitos com celular simples, internet limitada e pouca familiaridade digital. A acessibilidade, portanto, não é um detalhe do projeto: se o resultado não for compreendido por essas pessoas, a ferramenta não cumpre a função de reduzir os danos da desinformação.
 
 ### 4.1 Quem poderia ser excluído?
 
-A solução precisa considerar usuários com diferentes condições de acesso à tecnologia.
+#### 4.1.1 Grupos e barreiras
 
-| Público | Barreira possível | Mitigação proposta |
-|---|---|---|
-| Pessoas cegas | Interface exclusivamente visual | Compatibilidade com leitores de tela |
-| Pessoas com baixa visão | Texto pequeno ou contraste insuficiente | Ajustes visuais e contraste adequado |
-| Pessoas surdas | Resultados apresentados apenas em áudio | Transcrições e legendas |
-| Pessoas idosas | Navegação complexa | Linguagem simples e fluxo reduzido |
-| Pessoas com internet limitada | Arquivos pesados e páginas lentas | Interface leve e informações de consumo |
-| Pessoas com baixa alfabetização digital | Termos técnicos incompreensíveis | Explicações e exemplos acessíveis |
-| Pessoas com limitações motoras | Dependência do mouse | Navegação completa por teclado |
+- **Pessoas cegas.** Barreira: interface só visual e gráficos de "nível de confiança" sem descrição. O que a solução faz: compatibilidade com leitores de tela, resultado sempre em texto e descrição textual dos gráficos.
+- **Pessoas com baixa visão.** Barreira: texto pequeno, contraste insuficiente e tela quebrada ao ampliar. O que a solução faz: contraste mínimo, texto ampliável até 200% sem perda de função e nenhuma dependência de cor.
+- **Pessoas surdas.** Barreira: vídeos de ajuda e orientações apenas em áudio. O que a solução faz: legenda e transcrição em todo conteúdo de ajuda, com janela de Libras (por exemplo, o VLibras) como meta.
+- **Pessoas idosas.** Barreira: muitos passos, medo de errar e linguagem técnica. O que a solução faz: fluxo de 3 passos (enviar, aguardar, ver resultado), botões grandes e exemplo na tela inicial.
+- **Pessoas com internet limitada.** Barreira: envio de vídeo pesado, páginas lentas e franquia de dados curta. O que a solução faz: interface leve, aviso de consumo antes do envio, limites de tamanho e envio com retomada (ver 4.1.3).
+- **Pessoas com baixa alfabetização digital.** Barreira: termos como "proveniência", "C2PA" ou "modelo de IA". O que a solução faz: frases curtas e exemplos, deixando os termos técnicos em um "saiba mais" opcional.
+- **Pessoas com limitações motoras.** Barreira: arrastar arquivo com mouse e botões pequenos. O que a solução faz: envio por botão, navegação completa por teclado e alvos grandes.
+- **Pessoas com celular simples ou sem smartphone próprio.** Barreira: não instalam aplicativo e têm pouco espaço de armazenamento. O que a solução faz: solução web, sem instalação, que funciona em navegador comum e em telas pequenas.
+- **Pessoas com deficiência cognitiva ou dificuldade de leitura.** Barreira: excesso de informação e linguagem abstrata. O que a solução faz: resumo de uma frase no topo, detalhes abaixo e nenhum tempo-limite curto para concluir ações.
 
-**[DESENVOLVER — RESPONSÁVEL]**
+#### 4.1.2 Barreiras específicas do recorte (político-eleitoral, WhatsApp e redes sociais)
 
-- Identificar barreiras específicas do público escolhido.
-- Explicar alternativas para conexões lentas.
-- Definir como o usuário recebe o resultado.
-- Propor testes com participantes representativos.
+- **O conteúdo costuma estar no WhatsApp e não tem link.** O usuário precisa salvar o áudio ou vídeo no celular e enviar o arquivo. Isso é uma barreira para quem não sabe localizar arquivos. A interface terá instruções curtas, com imagens e texto, de como encaminhar o arquivo a partir do WhatsApp.
+- **Formatos comuns de mensagens.** Áudios de aplicativos de mensagem usam formatos próprios. A plataforma deve aceitar os formatos mais comuns de áudio e vídeo desses aplicativos e dizer claramente, em texto, quando o formato não é aceito.
+- **Pressa e emoção.** Conteúdo eleitoral circula rápido e gera reação forte. O resultado deve evitar linguagem alarmista e deixar claro o que a ferramenta sabe e o que não sabe.
+- **Confiança política.** O usuário pode rejeitar um resultado que contraria o que ele acredita. A explicação deve mostrar as evidências em linguagem simples e oferecer revisão humana, sem tom de acusação.
+- **Privacidade.** Muitos usuários vão enviar conteúdo que receberam de conhecidos. A plataforma deve avisar, antes do envio, que o arquivo pode conter dados de terceiros e o que será feito com ele (ligação com a seção 3.4).
+
+#### 4.1.3 Alternativas para conexões lentas
+
+1. Mostrar, antes do envio, o tamanho do arquivo e uma estimativa de consumo de dados.
+2. Aplicar limites de tamanho e duração (valores iniciais a validar com Ciência de Dados e Cloud, por exemplo 50 MB e 3 minutos), com aviso claro quando o arquivo passar do limite. Isso também reduz o custo ambiental (seção 5).
+3. Permitir enviar só o trecho suspeito, em vez do vídeo inteiro.
+4. Envio com retomada: se a conexão cair, o usuário continua de onde parou.
+5. Não manter a pessoa esperando na tela: o resultado fica disponível por um **código de acompanhamento**, e o usuário pode fechar a página e voltar depois.
+6. **Modo leve:** página só com texto, sem imagens decorativas e sem vídeo automático.
+7. Quando o conteúdo já estiver publicado, aceitar o link em vez do arquivo, para evitar o envio.
+
+#### 4.1.4 Como o usuário recebe o resultado
+
+- O resultado aparece na tela, em **texto**, com um resumo de uma frase no topo e os detalhes abaixo.
+- O estado do resultado é sempre escrito, nunca só por cor, som ou ícone.
+- O usuário pode voltar ao resultado usando o código de acompanhamento, **sem precisar criar conta**. Isso também ajuda a minimização de dados (seção 3.3).
+- Notificações por telefone ou e-mail só existiriam se o usuário pedisse, porque exigem coletar mais dados pessoais.
+- Todo resultado informa o que a ferramenta **não** sabe e como pedir **revisão humana** (canal de contestação da seção 3).
+
+Frases-modelo para cada estado do resultado, em linguagem simples:
+
+- **Proveniência verificada:** "Este arquivo tem registro de origem válido. Isso mostra quem o criou e se foi alterado depois. Não prova que o que é dito nele seja verdade."
+- **Indícios técnicos de manipulação:** "Encontramos sinais de que este conteúdo pode ter sido alterado ou criado por computador. Isso não é prova. Você pode pedir a análise de uma pessoa."
+- **Relacionado a uma checagem existente:** "Um conteúdo parecido já foi analisado por uma organização de checagem. Veja a análise completa no link."
+- **Análise inconclusiva:** "Não conseguimos saber. Isso não quer dizer que seja verdadeiro nem falso."
+- **Aguardando revisão humana:** "Uma pessoa está analisando este conteúdo. Guarde o seu código para ver o resultado depois."
+
+#### 4.1.5 Testes com participantes representativos
+
+- **Quem:** de 5 a 8 pessoas por perfil prioritário: pessoa idosa, pessoa cega ou com baixa visão (usando leitor de tela), pessoa com celular simples ou internet limitada, pessoa com baixa familiaridade digital. Se o grupo só conseguir testar com colegas e familiares, isso deve ser dito de forma clara no texto, e o teste com os perfis acima fica como etapa obrigatória antes do piloto.
+- **Tarefas reais:** "envie este áudio e me diga o que o resultado significa", "volte ao resultado de ontem usando o código", "peça revisão humana".
+- **O que medir:** se concluiu sem ajuda, tempo gasto, número de erros e se conseguiu explicar o resultado com as próprias palavras (compreensão, não só uso).
+- **Conteúdo do teste:** arquivos fictícios criados pelo grupo, claramente identificados como simulação, e sem candidatos ou partidos reais. Assim se evita influência política e o uso de dados pessoais de terceiros.
+- **Privacidade:** participação voluntária, com consentimento e coleta mínima de dados.
+- **Depois do teste:** os problemas viram correções antes de qualquer ampliação, e o teste é repetido. Os resultados alimentam o indicador "Acessibilidade" da seção 6.1.
 
 ### 4.2 Critérios concretos de acessibilidade
 
-Referência: WCAG 2.2, do W3C.
+Referência: WCAG 2.2, do W3C. Nível de conformidade alvo: **AA**.
 
-| Critério WCAG | Aplicação no projeto |
-|---|---|
-| 1.1.1 — Conteúdo não textual | Alternativas textuais para elementos informativos |
-| 1.2.2 — Legendas pré-gravadas | Legendas quando houver vídeo com áudio |
-| 1.4.3 — Contraste mínimo | Contraste adequado para textos |
-| 2.1.1 — Teclado | Operação sem necessidade de mouse |
-| 2.4.7 — Foco visível | Indicação visual do elemento selecionado |
-| 2.5.8 — Tamanho do alvo | Controles com área de interação adequada |
-| 3.3.1 — Identificação de erros | Mensagens claras sobre erros de formulário |
-| 3.3.8 — Autenticação acessível | Evitar barreiras cognitivas desnecessárias |
+#### 4.2.1 Critérios, como testar e como corrigir
 
-**[DESENVOLVER — RESPONSÁVEL]**
+**1.1.1 Conteúdo não textual**
+- Aplicação: gráficos e ícones de resultado têm texto alternativo útil. Imagens decorativas ficam sem descrição.
+- Como testar: axe DevTools, WAVE e leitor de tela.
+- Se falhar: escrever o texto alternativo ou a descrição. Marcar as decorativas com `alt=""`.
 
-Explicar como testar os critérios, quais ferramentas seriam utilizadas e como corrigir falhas encontradas.
+**1.2.2 Legendas pré-gravadas**
+- Aplicação: vídeos de ajuda com legenda.
+- Como testar: assistir sem som e revisar.
+- Se falhar: corrigir ou adicionar a legenda antes de publicar.
 
+**1.4.1 Uso de cor**
+- Aplicação: os estados do resultado nunca dependem só de cor.
+- Como testar: revisão manual e simulação de daltonismo.
+- Se falhar: adicionar texto e ícone com rótulo.
+
+**1.4.3 Contraste mínimo**
+- Aplicação: texto com contraste de pelo menos 4,5:1.
+- Como testar: Colour Contrast Analyser e Lighthouse.
+- Se falhar: ajustar as cores no design.
+
+**1.4.4 Redimensionar texto**
+- Aplicação: ampliar até 200% sem perder conteúdo ou função.
+- Como testar: zoom do navegador e do sistema.
+- Se falhar: usar unidades relativas e layout flexível.
+
+**2.1.1 Teclado**
+- Aplicação: todo o fluxo, inclusive o envio, funciona com Tab, Enter, Espaço e Esc.
+- Como testar: teste manual completo só com teclado.
+- Se falhar: trocar elementos sem foco por botões e links nativos.
+
+**2.2.1 Tempo ajustável**
+- Aplicação: sem sessão que expire durante o envio. O código de acompanhamento permite retomar.
+- Como testar: teste manual com envio lento.
+- Se falhar: aumentar ou remover o limite de tempo.
+
+**2.4.7 Foco visível**
+- Aplicação: o elemento ativo é sempre visível.
+- Como testar: navegação por teclado e revisão visual.
+- Se falhar: criar um contorno de foco claro.
+
+**2.5.8 Tamanho do alvo**
+- Aplicação: botões e links com pelo menos 24×24 px CSS, ou espaçamento equivalente.
+- Como testar: inspetor do navegador.
+- Se falhar: aumentar a área clicável ou o espaçamento.
+
+**3.3.1 Identificação de erros**
+- Aplicação: erros como "arquivo grande demais" ou "formato não aceito" aparecem em texto, dizendo como corrigir.
+- Como testar: provocar cada erro e ler com leitor de tela.
+- Se falhar: reescrever a mensagem em texto, ligada ao campo.
+
+**3.3.8 Autenticação acessível**
+- Aplicação: sem conta obrigatória. O código de acompanhamento pode ser copiado e colado. Sem CAPTCHA que exija resolver desafio.
+- Como testar: revisão do fluxo e teste com gerenciador de senhas.
+- Se falhar: permitir colar, evitar testes cognitivos e usar limite de requisições no servidor.
+
+**4.1.3 Mensagens de status**
+- Aplicação: "Enviando", "Analisando" e "Resultado pronto" são anunciados ao leitor de tela.
+- Como testar: teste com NVDA e TalkBack.
+- Se falhar: marcar as mensagens com regiões de status (`aria-live`).
+
+#### 4.2.2 Rotina de teste
+
+1. **Automático, a cada versão:** axe e Lighthouse. Encontram só parte dos problemas, então não bastam sozinhos.
+2. **Manual:** teclado completo, zoom de 200%, simulação de baixa conexão e leitor de tela (NVDA no computador, TalkBack no Android, VoiceOver no iPhone).
+3. **Com usuários reais:** conforme a seção 4.1.5.
+4. **Revisão de linguagem:** conferir se os textos do resultado estão em frases curtas, sem jargão, e se a ressalva de incerteza aparece em todos os estados.
+
+#### 4.2.3 Como corrigir as falhas
+
+- Cada falha vira uma tarefa no repositório com: critério violado, onde ocorre, gravidade e responsável.
+- Falhas que impedem concluir o fluxo (por exemplo, não dá para enviar o arquivo pelo teclado) **bloqueiam a liberação** de uma nova versão.
+- A tarefa só é fechada depois de testar novamente.
+- Também é necessário reavaliar a acessibilidade quando o relatório ou a interface mudarem.
+
+#### 4.2.4 Limitações assumidas
+
+O grupo não afirma que a plataforma será 100% acessível: a conformidade com WCAG 2.2 AA é uma meta, verificada por testes automáticos, manuais e com usuários. Se não for possível oferecer Libras no piloto, isso será dito de forma explícita, junto com a alternativa (legenda e transcrição).
 ---
 
 ## 5. Sustentabilidade
@@ -560,54 +662,68 @@ Explicar como testar os critérios, quais ferramentas seriam utilizadas e como c
 
 ### 5.1 Sustentabilidade ambiental
 
-O processamento de vídeos e áudios por modelos de inteligência artificial pode exigir recursos computacionais significativos.
+A sustentabilidade do VerificaBR deve ser considerada em três dimensões: ambiental, técnica e financeira. Como a plataforma utiliza inteligência artificial para verificar possíveis manipulações em áudios e vídeos, seu funcionamento exige recursos computacionais, armazenamento de dados e manutenção contínua. Dessa forma, é necessário desenvolver estratégias que reduzam o desperdício de recursos, garantam a continuidade tecnológica e possibilitem sua manutenção financeira sem comprometer a qualidade das análises.
 
-**Medidas propostas:**
+O processamento de conteúdos por inteligência artificial exige energia elétrica e infraestrutura computacional, especialmente quando envolve modelos complexos de análise audiovisual. Segundo o relatório *Energy and AI*, publicado pela Agência Internacional de Energia (IEA) em 2025, os centros de dados consumiram aproximadamente 415 TWh de eletricidade em 2024, representando cerca de 1,5% do consumo mundial. O estudo também projeta que esse consumo poderá chegar a aproximadamente 945 TWh até 2030, impulsionado, entre outros fatores, pelo crescimento da inteligência artificial.
 
-- Evitar executar modelos pesados quando não forem necessários.
-- Verificar proveniência e checagens existentes antes de iniciar análises custosas.
-- Aplicar limites de tamanho e duração dos arquivos.
-- Excluir dados temporários após o prazo definido.
-- Monitorar consumo de processamento e armazenamento.
-- Avaliar serviços de nuvem com indicadores ambientais disponíveis.
+Considerando esse cenário, o VerificaBR propõe uma arquitetura que prioriza a eficiência computacional. Antes de executar modelos de inteligência artificial mais exigentes, a plataforma realizará a verificação de proveniência digital por meio do padrão C2PA e consultará uma base de conteúdos anteriormente analisados. Essa estratégia poderá reduzir processamentos repetitivos, direcionando análises mais complexas apenas aos casos em que forem necessárias. Entretanto, a economia de recursos não deverá comprometer a confiabilidade dos resultados, uma vez que a presença de credenciais digitais ou de verificações anteriores não garante, isoladamente, a veracidade de um conteúdo.
 
-**[PREENCHER]** Definir métricas ambientais e explicar como seriam acompanhadas.
+Outras medidas incluem estabelecer limites de tamanho e duração dos arquivos, utilizar processamento sob demanda, evitar servidores de alto desempenho ociosos e realizar a exclusão automática de dados temporários após o período necessário. A escolha de provedores de nuvem também deverá considerar informações sobre eficiência energética e emissões de carbono.
+
+Para acompanhar os resultados, serão utilizados indicadores como consumo de CPU e GPU por análise, quantidade de dados armazenados, volume de transferência e estimativa de emissões de carbono. Como metas iniciais, propõe-se reduzir em 20% o consumo computacional médio por análise e em 15% o volume de dados transferidos durante o primeiro ano de monitoramento, tomando como referência os resultados obtidos nos testes iniciais. Essas metas são estimativas acadêmicas e poderão ser ajustadas conforme a viabilidade técnica.
+
+O acompanhamento será realizado mensalmente pelos responsáveis por Ciência de Dados e Engenharia de Dados, utilizando ferramentas de monitoramento da infraestrutura. Como referência metodológica, poderá ser utilizada a **Software Carbon Intensity (SCI)**, da Green Software Foundation, que permite avaliar a intensidade de carbono associada ao funcionamento de sistemas computacionais.
+
 
 ### 5.2 Sustentabilidade técnica e manutenção
 
-**Medidas propostas:**
 
-- Documentação de componentes e dependências.
-- Atualizações periódicas de segurança.
-- Monitoramento de desempenho dos modelos.
-- Reavaliação dos conjuntos de teste.
-- Revisão de incidentes e reclamações.
-- Procedimentos para substituição de tecnologias obsoletas.
+A sustentabilidade técnica está relacionada à capacidade de manter o VerificaBR funcional, seguro e atualizado ao longo do tempo. Como as tecnologias utilizadas para produzir deepfakes evoluem constantemente, os modelos de detecção precisam ser avaliados periodicamente para identificar possíveis perdas de desempenho diante de novos métodos de manipulação.
 
-**[PREENCHER]** Definir responsáveis, frequência e custos de manutenção.
+Para garantir a continuidade da plataforma, será necessário manter a documentação dos componentes, realizar atualizações de segurança, acompanhar o funcionamento dos modelos e revisar os conjuntos de dados utilizados nos testes. Também deverão existir procedimentos para corrigir falhas, responder a incidentes, analisar reclamações e substituir tecnologias que se tornem obsoletas.
+
+A manutenção será dividida entre as áreas profissionais presentes no projeto. A **Ciência de Dados** será responsável pelo acompanhamento da qualidade dos modelos, analisando indicadores como falsos positivos, falsos negativos e tempo de processamento. A **Engenharia de Dados** atuará na manutenção dos fluxos de informações, armazenamento e integração dos componentes, enquanto a **Cibersegurança** ficará responsável pela identificação de vulnerabilidades, proteção dos dados e avaliação dos controles de acesso.
+
+Propõe-se que o desempenho dos modelos e os custos operacionais sejam acompanhados mensalmente, enquanto revisões mais completas dos conjuntos de teste e da arquitetura sejam realizadas trimestral e semestralmente, respectivamente. Atualizações críticas de segurança deverão ser tratadas assim que identificadas, conforme sua gravidade.
+
+Essas práticas estão alinhadas às recomendações do *Artificial Intelligence Risk Management Framework*, desenvolvido pelo National Institute of Standards and Technology (NIST), que destaca a importância do gerenciamento contínuo dos riscos associados à inteligência artificial.
+
+Para o planejamento financeiro, estima-se inicialmente uma necessidade de 12 horas mensais de manutenção técnica. Considerando um valor hipotético de R$ 100,00 por hora, o custo mensal seria de aproximadamente R$ 1.200,00. Essa estimativa deverá ser revisada conforme a complexidade do sistema e a quantidade de usuários.
+
+A documentação do projeto e o versionamento no GitHub também contribuirão para sua sustentabilidade, permitindo que novos colaboradores compreendam a estrutura desenvolvida e realizem melhorias sem depender exclusivamente dos responsáveis iniciais.
 
 ### 5.3 Sustentabilidade financeira após o primeiro ano
 
-**Possibilidades a avaliar:**
+Para garantir sua continuidade após os primeiros 12 meses, o VerificaBR precisará de um planejamento financeiro que considere despesas com hospedagem, processamento de inteligência artificial, armazenamento, segurança, revisão humana e manutenção técnica. Embora a plataforma tenha finalidade acadêmica e social, sua eventual disponibilização pública dependerá de recursos suficientes para manter uma operação confiável.
 
-- Parcerias com instituições de pesquisa.
-- Apoio a projetos de educação midiática.
-- Financiamento institucional.
-- Convênios com organizações de checagem.
-- Serviços especializados, sem comprometer a independência da análise.
+Como ainda não existe uma implementação em funcionamento, foi elaborado um cenário hipotético de operação com **2.000 análises mensais**, das quais aproximadamente 10% poderiam necessitar de revisão humana. Considerando 200 revisões com duração média de 10 minutos e custo hipotético de R$ 48,00 por hora, a despesa mensal com essa atividade seria de aproximadamente R$ 1.600,00.
+
+A tabela apresenta uma estimativa inicial dos custos necessários para manter a plataforma nesse cenário:
 
 | Categoria de custo | Estimativa mensal | Justificativa |
-|---|---|---|
-| Hospedagem | [R$] | [PREENCHER] |
-| Processamento de IA | [R$] | [PREENCHER] |
-| Armazenamento | [R$] | [PREENCHER] |
-| Segurança | [R$] | [PREENCHER] |
-| Revisão humana | [R$] | [PREENCHER] |
-| Manutenção | [R$] | [PREENCHER] |
+|---|---:|---|
+| Hospedagem | R$ 400,00 | Manutenção da plataforma web, API e infraestrutura básica |
+| Processamento de IA | R$ 900,00 | Execução sob demanda dos modelos de análise audiovisual |
+| Armazenamento | R$ 200,00 | Armazenamento temporário e transferência de arquivos |
+| Segurança | R$ 350,00 | Monitoramento, proteção de dados e controle de acesso |
+| Revisão humana | R$ 1.600,00 | Análise especializada de casos complexos ou inconclusivos |
+| Manutenção técnica | R$ 1.200,00 | Atualizações, correções e acompanhamento do sistema |
+| **Subtotal** | **R$ 4.650,00** | **Despesas operacionais estimadas** |
+| Reserva de contingência (15%) | R$ 697,50 | Cobertura de possíveis despesas imprevistas |
+| **Total mensal** | **R$ 5.347,50** | **Custo operacional mensal projetado** |
 
-**[DESENVOLVER]** Explicar como o projeto continuaria após 12 meses e quais condições poderiam inviabilizá-lo.
+Com base nesses valores, o custo anual estimado seria de **R$ 64.170,00**. Considerando 24.000 análises por ano, o custo médio corresponderia a aproximadamente **R$ 2,67 por análise**, incluindo as despesas operacionais e a reserva de contingência.
 
----
+É importante destacar que esses valores representam uma **simulação acadêmica**, não uma cotação de mercado. Os custos reais dependerão da infraestrutura escolhida, da demanda dos usuários e da complexidade dos modelos utilizados. Ferramentas como o [AWS Pricing Calculator](https://aws.amazon.com/aws-cost-management/aws-pricing-calculator/) poderão auxiliar na elaboração de orçamentos mais precisos durante uma eventual implementação.
+
+Para reduzir despesas, o projeto deverá priorizar ferramentas de código aberto, processamento sob demanda, armazenamento temporário e reutilização de análises anteriores quando tecnicamente adequado. O acompanhamento financeiro será mensal, permitindo identificar aumentos inesperados e ajustar os recursos contratados.
+
+A continuidade financeira poderá ser viabilizada por meio de **parcerias com universidades, instituições de pesquisa, organizações de checagem de fatos e programas de financiamento à inovação tecnológica**. Também poderão ser considerados projetos de educação midiática e serviços institucionais especializados, desde que não comprometam a independência das análises ou a privacidade dos usuários.
+
+Caso os custos ultrapassem o orçamento previsto por dois meses consecutivos, será necessária uma revisão do planejamento. Se não houver financiamento suficiente para manter os controles essenciais de segurança e confiabilidade, o projeto poderá reduzir temporariamente seu alcance ou retornar ao formato de pesquisa acadêmica, evitando uma operação pública sem condições adequadas.
+
+Portanto, a sustentabilidade do VerificaBR não depende apenas da redução de custos, mas do equilíbrio entre **responsabilidade ambiental, atualização tecnológica e viabilidade financeira**. Ao adotar essas estratégias desde seu desenvolvimento, a plataforma poderá buscar uma operação eficiente e duradoura, contribuindo para o combate à desinformação sem desconsiderar os impactos associados à própria tecnologia.
+
 
 ## 6. Impacto esperado
 
@@ -811,6 +927,7 @@ O acompanhamento será mensal, com registro da linha de base atual: 11 repositó
 **Commits e pull requests:**
 
 1º commit: Adicionar esqueleto do documento, organizando para os outros integrantes adicionarem suas partes e separar a função de cada integrante.
+2º commit: Adicionar a parte 5 de sustentabilidade, além de adicionar as referencias
 
 #### 8.3.2 Competências técnicas e comportamentais
 
@@ -955,7 +1072,24 @@ As referências abaixo são sugestões iniciais de fontes para o Dossiê 4. O gr
 
 12. AOS FATOS. **Da IA ultrarrealista ao WhatsApp, como a desinformação moldou as eleições**. Outubro de 2026. Disponível em: https://www.aosfatos.org/noticias/ia-ultrarrealista-whatsapp-desinformacao-moldou-eleicoes/
 
-**[PREENCHER — GRUPO]**
+### Pesquisas da parte 5, sustentabilidade
+1. NTERNATIONAL ENERGY AGENCY (IEA). **Energy and AI**. Paris: IEA, 2025. Disponível em: https://www.iea.org/reports/energy-and-ai/executive-summary. Acesso em: 4 nov. 2026.
+
+2. GREEN SOFTWARE FOUNDATION. **Software Carbon Intensity (SCI): ISO/IEC 21031:2024**. Disponível em: https://greensoftware.foundation/standards/sci/. Acesso em: 4 nov. 2026.
+
+3. AMAZON WEB SERVICES (AWS). **Pilar Sustentabilidade: AWS Well-Architected Framework**. Revisão de novembro de 2024. Disponível em: https://docs.aws.amazon.com/pt_br/wellarchitected/latest/sustainability-pillar/sustainability-pillar.html. Acesso em: 4 nov. 2026.
+
+4. NATIONAL INSTITUTE OF STANDARDS AND TECHNOLOGY (NIST). **Artificial Intelligence Risk Management Framework (AI RMF 1.0)**. NIST AI 100-1, 2023. Disponível em: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/. Acesso em: 4 nov. 2026.
+
+5. GOOGLE CLOUD. **Carbon Footprint Reporting Methodology**. Documentação técnica. Disponível em: https://docs.cloud.google.com/carbon-footprint/docs/methodology. Acesso em: 4 nov. 2026.
+
+6. AMAZON WEB SERVICES (AWS). **AWS Pricing Calculator**. Disponível em: https://aws.amazon.com/aws-cost-management/aws-pricing-calculator/. Acesso em: 4 nov. 2026.
+
+7. AMAZON WEB SERVICES (AWS). **Definição de preço de instância sob demanda do Amazon EC2**. Disponível em: https://aws.amazon.com/pt/ec2/pricing/on-demand/. Acesso em: 4 nov. 2026.
+
+8. AMAZON WEB SERVICES (AWS). **Managing the Lifecycle of Objects**. Amazon S3 User Guide. Disponível em: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html. Acesso em: 4 nov. 2026.
+
+9. AMAZON WEB SERVICES (AWS). **Creating a Cost Budget**. AWS Cost Management User Guide. Disponível em: https://docs.aws.amazon.com/cost-management/latest/userguide/create-cost-budget.html. Acesso em: 4 nov. 2026.
 
 - Acrescentar as referências utilizadas pelos integrantes.
 - Conferir autoria, título, ano, URL e data de acesso.
