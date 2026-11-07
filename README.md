@@ -865,7 +865,7 @@ Para cada decisão:
 ### 8.2 Capítulo individual — Gabriel Anjos Albuquerque
 
 **Área de carreira:** Engenharia de Dados  
-**GitHub:** Nerd8im
+**GitHub:** [Nerd8im](https://github.com/Nerd8im)
 #### 8.2.1 Papel no projeto e entregas verificáveis
 
 **Responsabilidades:** Responsável pelas seções 1 (Análise do problema) e 2 (Proposta tecnológica) do dossiê. A Engenharia de Dados foi relevante porque o problema é, em boa parte, de dados: levantamentos com populações e métodos diferentes, detectores que divergem entre si e checagens dispersas em várias organizações. Coube levantar e comparar essas fontes e projetar o fluxo de dados do VerificaBR, da entrada do arquivo até o relatório com evidências, incluindo retenção mínima e trilha de auditoria.
